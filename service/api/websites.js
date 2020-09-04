@@ -28,5 +28,16 @@ router.get('/list', (req, res) => {
     }
   })
 })
+router.post('/detail', (req, res) => {
+  var sql = sqlmap.websites.detail
+})
+router.get('/detail', (req, res) => {
+  var sql = sqlmap.websites.detail
+})
+router.delete('/detail', (req, res) => {
+  var sql = sqlmap.websites.detail
+})
+
+
 
 module.exports = router

@@ -1,5 +1,5 @@
 module.exports = {
-  "transpileDependencies": [
+  transpileDependencies: [
     "vuetify"
   ],
   // 配置转发代理
