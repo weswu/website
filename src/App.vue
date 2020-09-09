@@ -9,7 +9,7 @@
     name: 'App',
     metaInfo: {
       title: 'App',
-      titleTemplate: '%s | Zero Pro',
+      titleTemplate: '%s | 私人网站',
       htmlAttrs: { lang: 'en' },
       meta: [
         { charset: 'utf-8' },
