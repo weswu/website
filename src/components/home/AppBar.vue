@@ -11,14 +11,14 @@
         :src="require('@/assets/logo.svg')"
         class="mr-3 hidden-xs-only"
         contain
-        max-width="52"
+        max-width="42"
         width="100%"
       />
 
       <base-img
         :src="require('@/assets/zero-logo-light.svg')"
         contain
-        max-width="128"
+        max-width="90"
         width="100%"
       />
 
@@ -45,34 +45,26 @@
         </v-tabs>
       </div>
 
-      <v-app-bar-nav-icon
-        class="hidden-md-and-up"
-        @click="drawer = !drawer"
-      />
+      <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = !drawer"/>
     </v-app-bar>
 
-    <home-drawer
-      v-model="drawer"
-      :items="items"
-    />
+    <home-drawer v-model="drawer" :items="items"/>
   </div>
 </template>
 
 <script>
   export default {
     name: 'HomeAppBar',
-
     components: {
       HomeDrawer: () => import('./Drawer'),
     },
-
     data: () => ({
       drawer: null,
       items: [
-        'Home',
-        'About',
-        'Contact',
-        'Pro',
+        '主页',
+        '音乐',
+        '新闻',
+        '个人中心',
       ],
     }),
   }

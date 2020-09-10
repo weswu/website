@@ -60,17 +60,7 @@
         </v-item-group>
 
         <v-divider class="my-6" />
-
-        <base-btn
-          block
-          href="https://store.vuetifyjs.com/product/zero-theme-free/?ref=vtyd-settings"
-          class="mb-6"
-          color="accent"
-          target="_blank"
-        >
-          Free Download
-        </base-btn>
-
+  
         <base-btn
           :to="{ name: 'Sink' }"
           block

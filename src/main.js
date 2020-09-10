@@ -5,6 +5,7 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import './plugins'
 import Axios from './router/axios'
+import './styles/common.scss'
 // ajax
 Vue.prototype.$http = Axios
 

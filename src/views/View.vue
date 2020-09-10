@@ -15,7 +15,6 @@
 <script>
   export default {
     name: 'BaseView',
-
     props: {
       id: {
         type: String,

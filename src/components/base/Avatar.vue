@@ -33,7 +33,6 @@
 <script>
   export default {
     name: 'BaseAvatar',
-
     props: {
       color: String,
       dark: Boolean,
@@ -44,11 +43,9 @@
         default: 56,
       },
     },
-
     data: () => ({
       multiply: 6,
     }),
-
     computed: {
       classes () {
         return [
@@ -60,7 +57,6 @@
       },
       styles () {
         const margin = this.size / (this.multiply * 2)
-
         return {
           // Aligns the outline content with the content
           margin: `-${margin}px 0 0 -${margin}px`,
