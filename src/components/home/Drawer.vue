@@ -10,10 +10,7 @@
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <v-list
-      color="white"
-      shaped
-    >
+    <v-list color="white" shaped>
       <v-list-item
         v-for="name in items"
         :key="name"

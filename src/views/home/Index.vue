@@ -8,11 +8,8 @@
 
   export default {
     name: 'Home',
-
     metaInfo: { title: 'Home' },
-
     extends: View,
-
     mixins: [
       LoadSections([
         'hero',

@@ -25,10 +25,7 @@
       <v-spacer />
 
       <div>
-        <v-tabs
-          class="hidden-sm-and-down"
-          optional
-        >
+        <v-tabs class="hidden-sm-and-down" optional>
           <v-tab
             v-for="(name, i) in items"
             :key="i"
@@ -62,7 +59,7 @@
       drawer: null,
       items: [
         '主页',
-        '音乐',
+        'Music',
         '新闻',
         '个人中心',
       ],

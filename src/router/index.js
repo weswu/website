@@ -45,6 +45,11 @@ const router = new Router({
           name: 'FourOhFour',
           component: () => import('@/views/404/Index.vue'),
         },
+        {
+          path: 'music',
+          name: 'Music',
+          component: () => import('@/views/music/Index.vue'),
+        },
       ],
     },
 

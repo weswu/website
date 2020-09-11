@@ -7,17 +7,14 @@
   >
     <v-container>
       <v-row>
-        <v-col
-          cols="12"
-          md="6"
-        >
+        <v-col cols="12" md="6">
           <div class="d-flex flex-wrap justify-md-start justify-center justify-md-none">
             <template v-for="(s, i) in social">
               <a
-                :key="s"
+                :key="s.name"
                 class="white--text pa-1 pa-md-0"
-                href="#"
-                v-text="s"
+                :href="s.url"
+                v-text="s.name"
               />
 
               <v-responsive
@@ -32,11 +29,7 @@
           </div>
         </v-col>
 
-        <v-col
-          class="text-center text-md-right"
-          cols="12"
-          md="6"
-        >
+        <v-col cols="12" md="6" class="text-center text-md-right">
           Copyright &copy; 2020 Vuetify, LLC
         </v-col>
       </v-row>
@@ -47,13 +40,10 @@
 <script>
   export default {
     name: 'HomeFooter',
-
     data: () => ({
       social: [
-        'Facebook',
-        'Twitter',
-        'Instagram',
-        'Linkedin',
+        {name: 'Weibo', url: 'https://weibo.com/shevywu'},
+        {name: 'GitHub', url: 'https://github.com/weswu'},
       ],
     }),
   }
