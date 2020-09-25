@@ -3,6 +3,7 @@ module.exports = {
   transpileDependencies: [
     "vuetify"
   ],
+  publicPath: '', //相对路径
   // 配置转发代理
   devServer: {
     disableHostCheck: true,
