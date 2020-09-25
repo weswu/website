@@ -1,2 +1,1 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0efd5b"],{"9a96":function(e,t,n){"use strict";n.r(t);var a,o,s=n("0dfe"),p=n("6512"),u={name:"ContactUs",metaInfo:{title:"Contact Us"},extends:s["a"],mixins:[Object(p["a"])(["hero-alt","keep-in-touch","map","newsletter","pro-features"])],props:{id:{type:String,default:"about"}}},c=u,l=n("9ca4"),i=Object(l["a"])(c,a,o,!1,null,null,null);t["default"]=i.exports}}]);
-//# sourceMappingURL=chunk-2d0efd5b.5578c61c.js.map
