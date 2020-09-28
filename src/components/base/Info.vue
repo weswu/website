@@ -2,7 +2,7 @@
   <v-theme-provider :dark="dark">
     <div>
       <base-img
-        :src="require('@/assets/zero-logo-dark.svg')"
+        :src="require('@/assets/svg/zero-logo-dark.svg')"
         contain
         max-width="128"
         min-height="78"

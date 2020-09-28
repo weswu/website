@@ -1,3 +1,10 @@
-::-webkit-scrollbar,::-webkit-scrollbar-track-piece{background-color:transparent}
-::-webkit-scrollbar{width:8px;height:8px}
-::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(144,146,152,.3)}
+// 全局变量
+@import './variables.scss';
+// 通用配置
+//@import './normalize.scss';
+// 动画
+//@import './animate.scss';
+// 组件
+@import './components.scss';
+// 响应式
+//@import './media.scss';

@@ -7,7 +7,7 @@
         cols="auto"
       >
         <base-img
-          :src="require(`@/assets/insta-${n}.jpg`)"
+          :src="require(`@/assets/insta/insta-${n}.jpg`)"
           color="grey lighten-1"
           width="96"
           tile

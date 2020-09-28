@@ -4,6 +4,7 @@ module.exports = {
     "vuetify"
   ],
   publicPath: '', //相对路径
+  //outputDir: 'blog',
   // 配置转发代理
   devServer: {
     disableHostCheck: true,

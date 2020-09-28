@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <home-app-bar />
+    <Header />
     <home-view />
-    <home-footer />
-    <home-settings />
+    <Footer />
+    <Settings />
   </v-app>
 </template>
 
@@ -11,9 +11,9 @@
   export default {
     name: 'HomeLayout',
     components: {
-      HomeAppBar: () => import('./AppBar'),
-      HomeFooter: () => import('./Footer'),
-      HomeSettings: () => import('./Settings'),
+      Header: () => import('./Header'),
+      Footer: () => import('./Footer'),
+      Settings: () => import('./Settings'),
       HomeView: () => import('./View'),
     },
   }
