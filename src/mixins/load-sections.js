@@ -2,6 +2,7 @@
 import {
   camelCase,
   upperFirst,
+  replace,
 } from 'lodash'
 
 export default function (sections = []) {
@@ -12,9 +13,14 @@ export default function (sections = []) {
     // and returns a function that returns a
     // Promise.
     components: sections.reduce((acc, cur) => {
-      const name = upperFirst(camelCase(cur))
-
-      acc[`Section${name}`] = () => import(`@/views/sections/${name}.vue`)
+      let name = upperFirst(camelCase(cur))
+      let current = name
+      if (cur.indexOf('--') > -1) {
+        current = replace(cur, '--', '/')
+        name = replace(cur, '--', '-')
+      }
+      console.log(name + ':' + current)
+      acc[`Section${name}`] = () => import(`@/views/sections/${current}.vue`)
 
       return acc
     }, {}),

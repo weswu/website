@@ -9,5 +9,8 @@
 <script>
   export default {
     name: 'BaseView',
+    created() {
+
+    }
   }
 </script>

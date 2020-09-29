@@ -4,6 +4,7 @@
     <home-view />
     <Footer />
     <Settings />
+    <YuruChara />
   </v-app>
 </template>
 
@@ -15,6 +16,7 @@
       Footer: () => import('./Footer'),
       Settings: () => import('./Settings'),
       HomeView: () => import('./View'),
+      YuruChara: () => import('./YuruChara'),
     },
   }
 </script>

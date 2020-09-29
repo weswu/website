@@ -9,10 +9,16 @@ module.exports = {
   devServer: {
     disableHostCheck: true,
     proxy: {
+      '/mapi': {
+        target: 'https://autumnfish.cn/',
+        changeOrigin: true, //true允许跨域
+        ws: true,
+        pathRewrite: {'^/api' : ''} //rewrite重写
+      },
       '/api': {
         target: 'http://127.0.0.1:3000/api/',
         changeOrigin: true, //true允许跨域
-        pathRewrite: {'^/api' : ''} //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+        pathRewrite: {'^/api' : ''} //rewrite重写
       }
     }
   }
