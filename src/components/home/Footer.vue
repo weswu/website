@@ -30,11 +30,7 @@
         </v-col>
 
         <v-col cols="12" md="6" class="text-center text-md-right">
-<<<<<<< HEAD
           Copyright &copy; 2020 Wes, 伟仔
-=======
-          Copyright &copy; 2020 Vuetify, LLC
->>>>>>> bc48a8a0d2bc57d214de841d83cd545e49305b5b
         </v-col>
       </v-row>
     </v-container>

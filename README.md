@@ -10,9 +10,12 @@ yarn install
 ```
 
 ### 添加子库
-
 ```javascript;
 git submodule add https://github.com/weswu/weswu.github.io.git blog
+
+git submodule update
+
+git pull
 ```
 
 

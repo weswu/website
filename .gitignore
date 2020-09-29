@@ -1,12 +1,5 @@
 .DS_Store
 node_modules
-<<<<<<< HEAD
-dist
-dist.rar
-dist.zip
-=======
->>>>>>> bc48a8a0d2bc57d214de841d83cd545e49305b5b
-
 
 # local env files
 .env.local
