@@ -13,7 +13,11 @@
     />
 
     <base-img
+<<<<<<< HEAD
       :src="require('@/assets/svg/logo.svg')"
+=======
+      :src="require('@/assets/logo.svg')"
+>>>>>>> bc48a8a0d2bc57d214de841d83cd545e49305b5b
       class="mx-auto mb-12"
       contain
       height="350"

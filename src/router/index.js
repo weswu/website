@@ -19,6 +19,7 @@ const router = new Router({
       children: [
         {
           path: '',
+<<<<<<< HEAD
           name: '主页',
           component: () => import('@/views/home/Index.vue'),
         },
@@ -36,20 +37,49 @@ const router = new Router({
         {
           path: 'contact-us',
           name: '联系我们',
+=======
+          name: 'Home',
+          component: () => import('@/views/home/Index.vue'),
+        },
+        {
+          path: 'about',
+          name: 'About',
+          component: () => import('@/views/about/Index.vue'),
+          meta: { src: require('@/assets/about.jpg') },
+        },
+        {
+          path: 'contact-us',
+          name: 'Contact',
+>>>>>>> bc48a8a0d2bc57d214de841d83cd545e49305b5b
           component: () => import('@/views/contact-us/Index.vue'),
           meta: { src: require('@/assets/contact.jpg') },
         },
         {
+<<<<<<< HEAD
           path: 'about',
           name: '个人中心',
           component: () => import('@/views/about/Index.vue'),
           meta: { src: require('@/assets/about.jpg') },
+=======
+          path: 'pro',
+          name: 'Pro',
+          component: () => import('@/views/pro/Index.vue'),
+          meta: { src: require('@/assets/pro.jpg') },
+>>>>>>> bc48a8a0d2bc57d214de841d83cd545e49305b5b
         },
         {
           path: '*',
           name: 'FourOhFour',
           component: () => import('@/views/404/Index.vue'),
         },
+<<<<<<< HEAD
+=======
+        {
+          path: 'music',
+          name: 'Music',
+          component: () => import('@/views/music/Index.vue'),
+        },
+>>>>>>> bc48a8a0d2bc57d214de841d83cd545e49305b5b
       ],
     },
 

@@ -3,7 +3,11 @@
     id="pro-features"
   >
     <v-img
+<<<<<<< HEAD
       :src="require('@/assets/svg/logo.svg')"
+=======
+      :src="require('@/assets/logo.svg')"
+>>>>>>> bc48a8a0d2bc57d214de841d83cd545e49305b5b
       class="mx-auto mb-8"
       max-width="128"
     />

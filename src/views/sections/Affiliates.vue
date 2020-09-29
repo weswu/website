@@ -14,7 +14,11 @@
             class="align-self-center"
           >
             <base-img
+<<<<<<< HEAD
               :src="require(`@/assets/logo/logo-${n}.png`)"
+=======
+              :src="require(`@/assets/logo-${n}.png`)"
+>>>>>>> bc48a8a0d2bc57d214de841d83cd545e49305b5b
               color="grey"
               contain
               height="40"
