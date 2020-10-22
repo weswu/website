@@ -16,8 +16,11 @@ app.all('*', function(req, res, next) {
 })
 
 // 注册api路由
-//app.use('/api/user', require('./api/user'))
-app.use('/api/websites', require('./api/websites'))
+app.use('/api/user', require('./api/user'))
+app.use('/api/article', require('./api/article'))
+app.use('/api/category', require('./api/category'))
+app.use('/api/tag', require('./api/tag'))
+app.use('/api/comment', require('./api/comment'))
 
 app.listen(3000)
 console.log('server: http://localhost:3000')

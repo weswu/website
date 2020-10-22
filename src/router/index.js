@@ -40,9 +40,9 @@ const router = new Router({
           meta: { src: require('@/assets/contact.jpg') },
         },
         {
-          path: 'about',
+          path: 'user',
           name: '个人中心',
-          component: () => import('@/views/about/Index.vue'),
+          component: () => import('@/views/user/Index.vue'),
           meta: { src: require('@/assets/about.jpg') },
         },
         {

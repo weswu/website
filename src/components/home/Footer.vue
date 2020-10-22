@@ -14,6 +14,7 @@
                 :key="s.name"
                 class="white--text pa-1 pa-md-0"
                 :href="s.url"
+                target="_blank"
                 v-text="s.name"
               />
 

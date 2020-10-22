@@ -23,7 +23,7 @@
     props: {
       id: {
         type: String,
-        default: 'about',
+        default: '404',
       },
     },
   }

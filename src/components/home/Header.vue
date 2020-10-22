@@ -5,7 +5,7 @@
       app
       color="white"
       elevation="1"
-      height="80"
+      height="60"
     >
       <base-img
         :src="require('@/assets/svg/logo.svg')"
@@ -30,7 +30,7 @@
             v-for="(name, i) in items"
             :key="i"
             :to="{ name }"
-            :exact="name === 'Home'"
+            :exact="name === '主页'"
             :ripple="false"
             active-class="text--primary"
             class="font-weight-bold"

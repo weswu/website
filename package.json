@@ -6,7 +6,7 @@
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "service": "node service/app.js",
+    "server": "node server/server.js",
     "wes": "git pull && git add . && git commit -m \"wes\" -n && git push"
   },
   "dependencies": {
