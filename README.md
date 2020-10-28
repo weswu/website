@@ -10,8 +10,8 @@ yarn install
 ```
 
 #### 音乐播放器
-https://github.com/kzj0916/KzjMusicxindong
-https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=neteasecloudmusicapi
+[参看][5]
+[API][6]
 1.音乐列表 playList playmenus
 2.prev next isplaying playId count
 3.音乐详细 playDetail
@@ -36,8 +36,8 @@ https://stylus.bootcss.com/
 http://drug.ysmove.com/qdh/dist/#/store/monitor2
 
 #### 看板娘
-live2d
-1.右下角显示
+[live2d][2]
+
 
 #### 代码区高亮显示
 
@@ -66,3 +66,7 @@ npm run server
 
 [0]: https://vuetifyjs.com/zh-Hans/components/api-explorer/
 [1]: http://www.weizai.party
+[2]: https://github.com/galnetwen/Live2D
+
+[5]: https://github.com/kzj0916/KzjMusicxindong
+[6]: https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=neteasecloudmusicapi
