@@ -9,6 +9,7 @@
 
 <script>
   export default {
+    name: 'SectionList',
     data () {
       return {
         headers: [

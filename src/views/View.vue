@@ -3,7 +3,7 @@
     <v-row no-gutters>
       <v-col cols="12">
         <component
-          :is="`section-${section}`"
+          :is="`section-${section.split('/').pop()}`"
           v-for="section in sections"
           :key="section"
         />
