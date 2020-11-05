@@ -44,7 +44,13 @@ http://drug.ysmove.com/qdh/dist/#/store/monitor2
 
 ## 数据库
 ```
-npm run server
+yarn server
+or
+npm install express-generator -g
+express server
+cd server
+cnpm install
+npm start
 ```
 
 #### 用户管理
@@ -61,6 +67,9 @@ npm run server
 
 #### 标签管理
 >文章标签
+
+
+## 个人图书馆
 
 
 

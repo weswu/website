@@ -3,6 +3,7 @@ var router = express.Router()
 var db = require('../db/db')
 var map = require('../db/map')
 
+
 const success = (res, ret) => {
   if (typeof ret === 'undefined') {
     res.json({
@@ -18,6 +19,12 @@ const success = (res, ret) => {
   }
 }
 
+
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
+
 /**
  * 查询列表页
  */
@@ -29,7 +36,6 @@ router.get('/list', (req, res) => {
       success(res, result)
     }
   })
-  db.end();
 })
 
 /**
@@ -46,7 +52,6 @@ router.post('/add', (req, res) => {
       success(res, result)
     }
   });
-  db.end();
 })
 
 /**
@@ -62,7 +67,6 @@ router.get('/:id', (req, res) => {
       success(res, result)
     }
   });
-  db.end();
 })
 
 /**
@@ -78,7 +82,6 @@ router.delete('/:id', (req, res) => {
       success(res, result)
     }
   });
-  db.end();
 })
 
 module.exports = router
