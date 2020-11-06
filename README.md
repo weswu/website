@@ -21,11 +21,14 @@ yarn install
 
 #### 添加子库blog
 ```javascript;
-git submodule add https://github.com/weswu/weswu.github.io.git blog
+git submodule add https://github.com/weswu/weswu.github.io.git blog  // 添加 生成.gitmodules
 
-git submodule update
+git submodule init
+git submodule update   // 更新
+git submodule remove   // 移除
 
-git pull
+
+
 ```
 
 #### CSS
