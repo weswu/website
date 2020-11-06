@@ -9,7 +9,7 @@
     name: 'App',
     metaInfo: {
       title: 'App',
-      titleTemplate: '%s | 私人网站',
+      titleTemplate: '%s | 网站',
       htmlAttrs: { lang: 'en' },
       meta: [
         { charset: 'utf-8' },

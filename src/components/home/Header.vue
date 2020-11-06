@@ -7,16 +7,9 @@
       elevation="1"
       height="60"
     >
-      <base-img
-        :src="require('@/assets/svg/logo.svg')"
-        class="mr-3 hidden-xs-only"
-        contain
-        max-width="42"
-        width="100%"
-      />
 
       <base-img
-        :src="require('@/assets/svg/zero-logo-light.svg')"
+        :src="require('@/assets/svg/wes-logo-light.svg')"
         contain
         max-width="90"
         width="100%"
