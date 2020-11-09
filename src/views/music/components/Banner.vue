@@ -45,7 +45,6 @@ export default {
   methods: {
     //获取轮播图数据
     get() {
-      debugger
       getSwiper().then(res => {
         this.swipers = res.banners;
       });

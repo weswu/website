@@ -1,5 +1,6 @@
 const music = {
   state: {
+    user: {},
     musiclistId:[],
     musicCount:0,
     nowmusic:'',
@@ -10,6 +11,7 @@ const music = {
     isPlaying:true,
   },
   getters: {
+    user: state => state.user,
     musiclistId: state => state.musiclistId,
     musicCount: state => state.musicCount,
     nowmusicmenu: state => state.nowmusicmenu,
@@ -19,6 +21,9 @@ const music = {
     isPlaying: state => state.isPlaying,
   },
   mutations: {
+    user: (state, value) => {
+      state.user = value
+    },
     set_musiclistId: (state, value) => {
       state.musiclistId = value
     },

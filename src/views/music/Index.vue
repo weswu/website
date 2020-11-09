@@ -14,9 +14,7 @@
 
     mixins: [
       LoadSections([
-        'hero-alt',
-        'music/list',
-        'music/banner',
+        'music'
       ]),
     ],
 
