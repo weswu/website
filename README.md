@@ -19,16 +19,13 @@ yarn install
 5.音乐页可视化
 
 
-#### 添加子库blog
+#### 添加子库blog（无法提交子模块，已去）
 ```javascript;
 git submodule add https://github.com/weswu/weswu.github.io.git blog  // 添加 生成.gitmodules
 
 git submodule init
 git submodule update   // 更新
 git submodule remove   // 移除
-
-
-
 ```
 
 #### CSS
