@@ -31,4 +31,66 @@ router.get('/list', (req, res) => {
   })
 })
 
+/**
+ * 添加
+ */
+router.post('/add', (req, res) => {
+  var sql = map.user.add
+  let params = req.body;
+  let data = [params.username, params.password, params.nickname, params.telephone, params.email, params.photo, params.create_time, params.birthday]
+  db.query(sql, data, (err, result) => {
+    if (err) {
+      res.json(err);
+    } else {
+      success(res, result)
+    }
+  });
+})
+
+/**
+ * 查询
+ */
+router.get('/:id', (req, res) => {
+  var sql = map.user.detail
+  var id = req.params.id
+  db.query(sql, id, (err, result) => {
+    if (err) {
+      res.json(err);
+    } else {
+      success(res, result)
+    }
+  });
+})
+
+/**
+ * 删除
+ */
+router.delete('/:id', (req, res) => {
+  var sql = map.user.delete
+  var id = req.params.id
+  db.query(sql, id, (err, result) => {
+    if (err) {
+      res.json(err);
+    } else {
+      success(res, result)
+    }
+  });
+})
+
+/**
+ * 修改
+ */
+router.put('/:id', (req, res) => {
+  var sql = map.user.update
+  var id = req.params.id
+  db.query(sql, id, (err, result) => {
+    debugger
+    if (err) {
+      res.json(err);
+    } else {
+      success(res, result)
+    }
+  });
+})
+
 module.exports = router

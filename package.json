@@ -6,7 +6,7 @@
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "server": "node server/bin/www",
+    "server": "node --inspect server/bin/www",
     "wes": "git pull && git add . && git commit -m \"wes\" -n && git push",
     "blog": "git submodule update --remote && git add dist && git commit -m \"wes\" -n && git push"
   },

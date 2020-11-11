@@ -34,7 +34,8 @@ http://drug.ysmove.com/qdh/dist/#/store/monitor2
 
 node --inspect cc.js
 chrome://inspect/#devices
-chrome-devtools://devtools/bundled/inspector.html?experiments=true&v8only=true&ws://127.0.0.1:9229/a6e4e569-2c00-4fac-8ad0-8ee9b5120ecc
+
+devtools://devtools/bundled/inspector.html?experiments=true&v8only=true&ws://127.0.0.1:9229/0483a97a-7edc-48f2-bcc3-056924dd07b0
 
 
 

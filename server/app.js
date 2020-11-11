@@ -2,21 +2,19 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser')
 var logger = require('morgan');
 
 var app = express();
 
-// var bodyParser = require('body-parser')
-// app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded({ extended: false }))
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// view engine setup 静态jade模板
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -33,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 注册api路由
 app.use('/api/', require('./routes/index'))
 app.use('/api/user', require('./routes/user'))
-app.use('/api/article', require('./routes/article'))
+app.use('/api/news', require('./routes/article'))
 app.use('/api/category', require('./routes/category'))
 app.use('/api/tag', require('./routes/tag'))
 app.use('/api/comment', require('./routes/comment'))

@@ -23,16 +23,32 @@ const router = new Router({
           component: () => import('@/views/home/Index.vue'),
         },
         {
+          path: 'news',
+          name: '文章',
+          component: () => import('@/views/news/Index.vue'),
+          meta: { src: require('@/assets/pro.jpg') },
+        },
+        {
           path: 'music',
           name: '音乐',
           component: () => import('@/views/music/Index.vue'),
+          children: [
+            {
+              path: 'edit',
+              component: () => import('@/views/news/Edit.vue'),
+            },
+            {
+              path: 'detail',
+              component: () => import('@/views/news/Detail.vue'),
+            }
+          ]
         },
-        {
-          path: 'pro',
-          name: '文章',
-          component: () => import('@/views/pro/Index.vue'),
-          meta: { src: require('@/assets/pro.jpg') },
-        },
+        // {
+        //   path: 'pro',
+        //   name: '文章',
+        //   component: () => import('@/views/pro/Index.vue'),
+        //   meta: { src: require('@/assets/pro.jpg') },
+        // },
         {
           path: 'contact-us',
           name: '联系我们',
