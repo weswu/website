@@ -50,6 +50,9 @@ cnpm install
 npm start
 ```
 
+### MLab
+0.5G free mongoDB
+
 #### 用户管理
 >登录、注册
 
