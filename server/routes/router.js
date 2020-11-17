@@ -3,11 +3,14 @@ var db = require("../db/mongodb.js");
 var md5 = require("../db/md5.js");
 var fs = require("fs");
 var moment = require('moment');
-var MongoClient = require('mongodb').MongoClient, test = require('assert');
+var MongoClient = require('mongodb').MongoClient, test = require('assert')
+
 //首页
-exports.showIndex = function (req,res,next) {
-    res.render("index");
+exports.index = function (req,res,next) {
+  res.render('index', { title: 'Express' });
 };
+
+
 //编写页面
 exports.showRecording = function (req, res, next) {
     if(req.session.login != "1"){
@@ -44,15 +47,6 @@ exports.doRecording = function (req, res, next) {
         });
     });
 };
-//取得文章
-exports.getArticle = function (req, res, next) {
-    var page = req.query.page;
-    db.find("movies",{},{"pageamount":10,"page":page,"sort":{"date":-1}}, function (err, result) {
-        var obj = {"allResult" : result};
-        debugger
-        res.json(obj);
-    });
-};
 
 //取得总页数
 exports.getAllAmount = function (req, res, next) {
@@ -61,22 +55,7 @@ exports.getAllAmount = function (req, res, next) {
     });
 };
 
-//文章页面
-exports.showArticle = function (req, res, next) {
-    if(req.query.ID == undefined){
-        res.send("你想干嘛？");
-        return;
-    }
-    var aId = parseInt(req.query.ID);
-    db.find("article",{"ID":aId},function (err,result) {
-        if(err){
-            console.log(err);
-        }
-        res.render("article",{
-            "allResult" : result[0]
-        });
-    });
-};
+
 
 //删除文章
 exports.delArticle =function (req, res, result) {

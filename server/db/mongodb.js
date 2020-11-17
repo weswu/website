@@ -11,18 +11,20 @@ var MongoClient = require('mongodb').MongoClient;
 
 
 // 链接数据库
-const uri = "mongodb+srv://root:20201113@wes.z45uy.mongodb.net/sample_mflix?retryWrites=true&w=majority";
+const url = "mongodb+srv://root:20201113@wes.z45uy.mongodb.net/sample_mflix?retryWrites=true&w=majority";
 
 //不管数据库什么操作，都是先连接数据库，所以我们可以把连接数据库
 //封装成为内部函数
 function _connectDB(callback) {
   //连接数据库
-  MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology:true }, function (err, db) {
-      if (err) {
-          callback(err, null);
-          return;
-      }
-      callback(err, db);
+  MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
+    if (err) {
+      callback(err, null);
+      return;
+    }
+    console.log('数据库已连接')
+    var dbase = db.db("sample_mflix")
+    callback(err, dbase);
   });
 }
 
@@ -61,21 +63,22 @@ exports.find = function (collectionName, json, C, D) {
 
   //连接数据库，连接之后查找所有
   _connectDB(function (err, db) {
-      var cursor = db.collection(collectionName).find(json).skip(skipnumber).limit(limit).sort(sort);
-      cursor.each(function (err, doc) {
-          if (err) {
-              callback(err, null);
-              db.close(); //关闭数据库
-              return;
-          }
-          if (doc != null) {
-              result.push(doc);   //放入结果数组
-          } else {
-              //遍历结束，没有更多的文档了
-              callback(null, result);
-              db.close(); //关闭数据库
-          }
-      });
+    var cursor = db.collection(collectionName).find(json).skip(skipnumber).limit(limit).sort(sort)
+    console.log('result:' + cursor)
+    cursor.each(function (err, doc) {
+      if (err) {
+        callback(err, null);
+        db.close(); //关闭数据库
+        return;
+      }
+      if (doc != null) {
+        result.push(doc);   //放入结果数组
+      } else {
+        //遍历结束，没有更多的文档了
+        callback(null, result);
+        //db.close(); //关闭数据库
+      }
+    });
   });
 };
 

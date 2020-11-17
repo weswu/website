@@ -9,8 +9,8 @@ var session = require('express-session');
 var app = express();
 
 // view engine setup 静态jade模板
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 //使用session
 app.use(session({
@@ -36,18 +36,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var router = require("./routes/router.js");
 //首页
-app.get("/",router.showIndex);
+app.get('/', router.index)
+//文章
+app.use('/article', require('./routes/article'))
+
 //编写页面
 app.get("/recording", router.showRecording);
 //执行保存
 app.post("/doRecording", router.doRecording);
 
-//取得文章
-app.post("/getArticle", router.getArticle);
 //取得总页数
 app.post("/getAllAmount", router.getAllAmount);
-//文章页面
-app.get("/article", router.showArticle);
+
 //删除文章
 app.post("/delArticle", router.delArticle);
 

@@ -38,6 +38,10 @@ chrome://inspect/#devices
 devtools://devtools/bundled/inspector.html?experiments=true&v8only=true&ws://127.0.0.1:9229/0483a97a-7edc-48f2-bcc3-056924dd07b0
 
 
+socket.io
+user.broadcast
+
+
 
 ## 数据库
 ```
