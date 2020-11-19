@@ -16,6 +16,7 @@
       LoadSections([
         'hero-alt',
         'news/list',
+        'news/movies',
       ]),
     ],
 

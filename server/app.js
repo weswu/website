@@ -25,20 +25,21 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 注册api路由
-// app.use('/api/', require('./routes/index'))
-// app.use('/api/user', require('./routes/user'))
-// app.use('/api/news', require('./routes/article'))
+
 // app.use('/api/category', require('./routes/category'))
 // app.use('/api/tag', require('./routes/tag'))
 // app.use('/api/comment', require('./routes/comment'))
 
-
+// 注册api路由
 var router = require("./routes/router.js");
 //首页
 app.get('/', router.index)
 //文章
-app.use('/article', require('./routes/article'))
+app.use('/api/article', require('./routes/article'))
+//视频
+app.use('/api/movies', require('./routes/movies'))
+//用户
+app.use('/api/user', require('./routes/user'))
 
 //编写页面
 app.get("/recording", router.showRecording);

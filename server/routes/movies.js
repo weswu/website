@@ -4,7 +4,6 @@ var db = require("../db/mongodb.js")
 //与数据库默认的_id进行匹配
 var ObjectID = require('mongodb').ObjectID
 
-//  文章
 
 /**
  * 查询列表页
@@ -15,7 +14,6 @@ router.get('/list', (req, res, next) => {
     db.success(res, result, err)
   })
 })
-
 
 /**
  * 添加
@@ -36,7 +34,7 @@ router.get('/:id', (req, res) => {
   var id = req.params.id
   db.find('movies', {'_id': ObjectID(id)},function (err,result) {
     console.log('result:' + result)
-    success(res, result[0])
+    db.success(res, result[0], err)
   });
 })
 

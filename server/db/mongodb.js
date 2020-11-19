@@ -117,3 +117,20 @@ exports.getAllCount = function (collectionName,callback) {
       });
   })
 };
+
+
+exports.success =  (res, ret, err) => {
+  if (err) res.json(err)
+  if (typeof ret === 'undefined') {
+    res.json({
+      code: 1,
+      msg: '操作失败'
+    })
+  } else {
+    res.json({
+      code: 0,
+      data: ret,
+      msg: null
+    })
+  }
+}
