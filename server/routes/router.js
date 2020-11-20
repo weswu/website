@@ -8,53 +8,7 @@ var MongoClient = require('mongodb').MongoClient, test = require('assert')
 //首页
 exports.index = function (req,res,next) {
   res.render('index', { title: 'Express' });
-};
-
-
-//编写页面
-exports.showRecording = function (req, res, next) {
-    if(req.session.login != "1"){
-        res.send("请登陆！");
-    }else {
-        res.render("recording");
-    }
-};
-exports.doRecording = function (req, res, next) {
-
-    var form = new formidable.IncomingForm();
-
-    form.parse(req, function (err, fields) {
-        db.getAllCount("article", function (count) {
-            var allCount = count.toString();
-            var date = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
-            //写入数据库
-            db.insertOne("article", {
-                "ID" : parseInt(allCount) + 1,
-                "topic" : fields.topic,
-                "publisher" : fields.publisher,
-                "classify" : fields.classify,
-                "content" : fields.content,
-                "date" : date,
-                "thumbsUp": 0,
-                "visitNum" : 0
-            },function (err, result) {
-                if(err){
-                    res.send("-1");
-                    return;
-                }
-                res.send("1");
-            });
-        });
-    });
-};
-
-//取得总页数
-exports.getAllAmount = function (req, res, next) {
-    db.getAllCount("article", function (count) {
-        res.send(count.toString());
-    });
-};
-
+}
 
 
 //删除文章

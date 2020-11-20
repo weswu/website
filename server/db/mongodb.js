@@ -33,7 +33,7 @@ exports.insertOne = function (collectionName, json, callback) {
   _connectDB(function (err, db) {
       db.collection(collectionName).insertOne(json, function (err, result) {
           callback(err, result);
-          db.close(); //关闭数据库
+          //db.close(); //关闭数据库
       })
   })
 };
@@ -111,13 +111,33 @@ exports.updateMany = function (collectionName, json1, json2, callback) {
 
 exports.getAllCount = function (collectionName,callback) {
   _connectDB(function (err, db) {
-      db.collection(collectionName).count({}).then(function(count) {
+      db.collection(collectionName).countDocuments().then(function(count) {
           callback(count);
           db.close();
       });
   })
 };
 
+
+exports.list =  (res, ret, count, err) => {
+  if (err) res.json(err)
+  if (typeof ret === 'undefined') {
+    res.json({
+      code: 1,
+      msg: '操作失败'
+    })
+  } else {
+    res.json({
+      code: 0,
+      data: {
+        list: ret,
+        total: count.total,
+        pages: count.pages
+      },
+      msg: null
+    })
+  }
+}
 
 exports.success =  (res, ret, err) => {
   if (err) res.json(err)
