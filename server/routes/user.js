@@ -7,7 +7,7 @@ var db = require('../db/mongodb')
  */
 router.get('/list', (req, res, next) => {
   var page = req.query.page;
-  db.find('movies', {}, {"pageamount":10,"page":page,"sort":{"date":-1}}, function (err, result) {
+  db.find('movies', {}, {'pageamount': 10, 'page':page, 'sort': {'date': -1}}, function (err, result) {
     db.success(res, result, err)
   })
 })

@@ -1,3 +1,5 @@
+var express = require('express')
+var router = express.Router()
 var formidable = require('formidable');
 var db = require("../db/mongodb.js");
 var md5 = require("../db/md5.js");
@@ -6,7 +8,7 @@ var moment = require('moment');
 var MongoClient = require('mongodb').MongoClient, test = require('assert')
 
 //首页
-exports.index = function (req,res,next) {
+exports.index = function (req, res, next) {
   res.render('index', { title: 'Express' });
 }
 
@@ -26,74 +28,79 @@ exports.delArticle =function (req, res, result) {
     });
 };
 
-
+/*****************************   注册    ************************/
 //注册页面
-exports.showRegister = function (req, res ,result) {
-    res.render("register");
-};
+router.get('/register', (req, res, result) => {
+  res.render("register")
+})
 //执行注册
-exports.doRegister = function (req, res, result) {
-    //得到用户填写的东西
-    var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
-        //得到表单之后做的事情
-        var username = fields.username;
-        var password = fields.password;
-        var md5PassWord = md5(md5(password).substr(4,7) + md5(password));
-        db.insertOne("user",{
-            "username" : username,
-            "password" : md5PassWord
-        },function(err,result){
-            if(err){
-                res.send("-3");//服务器错误
-                return;
-            }
-            req.session.login = "1";
-            res.send("1");//注册成功，写入SESSION
-        });
-    });
-};
+router.post('/doRegister', (req, res, result) => {
+  //得到用户填写的东西
+  var form = new formidable.IncomingForm();
+  form.parse(req, function (err, fields, files) {
+      //得到表单之后做的事情
+      var username = fields.username;
+      var password = fields.password;
+      var md5PassWord = md5(md5(password).substr(4,7) + md5(password));
+      db.insertOne("user",{
+          "username" : username,
+          "password" : md5PassWord
+      },function(err,result){
+          if(err){
+              res.send("-3");//服务器错误
+              return;
+          }
+          req.session.login = "1";
+          res.send("1");//注册成功，写入SESSION
+      });
+  });
+})
+
+
+/*****************************   注册    ************************/
+
 
 //登陆页面
-exports.showLogin = function (req, res ,result) {
-    res.render("login");
-};
-
+router.get('/login', (req, res, result) => {
+  res.render("login")
+})
 //执行登陆
-exports.doLogin = function (req, res, result) {
-    //得到用户填写的东西
-    var form = new formidable.IncomingForm();
+router.post('/doLogin', (req, res, result) => {
+  //得到用户填写的东西
+  var form = new formidable.IncomingForm();
 
-    form.parse(req, function(err, fields, files) {
-        var username = fields.username;
-        var password = fields.password;
-        password = md5(md5(password).substr(4,7) + md5(password));
+  form.parse(req, function(err, fields, files) {
+      var username = fields.username;
+      var password = fields.password;
+      password = md5(md5(password).substr(4,7) + md5(password));
 
-        //检索数据库，按登录名检索数据库，查看密码是否匹配
-        db.find("user",{"username":username},function(err,result){
-            if(err){
-                res.send("-3");//服务器错误
-                return
-            }
-            if(result.length == 0){
-                res.send("-1");  //-2没有这个人
-                return;
-            }
-            var dbpassword = result[0].password;
-            //要对用户这次输入的密码，进行相同的加密操作。然后与
-            //数据库中的密码进行比对
-            if(password == dbpassword){
-                req.session.login = "1";
-                res.send("1");  //登陆成功
-                return;
-            }else{
-                res.send("-2"); //密码不匹配
-            }
-        });
-    });
+      //检索数据库，按登录名检索数据库，查看密码是否匹配
+      db.find("user",{"username":username},function(err,result){
+          if(err){
+              res.send("-3");//服务器错误
+              return
+          }
+          if(result.length == 0){
+              res.send("-1");  //-2没有这个人
+              return;
+          }
+          var dbpassword = result[0].password;
+          //要对用户这次输入的密码，进行相同的加密操作。然后与
+          //数据库中的密码进行比对
+          if(password == dbpassword){
+              req.session.login = "1";
+              res.send("1");  //登陆成功
+              return;
+          }else{
+              res.send("-2"); //密码不匹配
+          }
+      });
+  });
 
-    return;
-};
+  return;
+})
+
+
 
 //无判断访问者地理位置！
 exports.getAddress = function (req, res, result) {
@@ -226,51 +233,7 @@ exports.showAbout = function (req, res ,result) {
 };
 //About
 
-//Comment!
-exports.showComment = function (req, res ,result) {
-    res.render("comment");
-};
-exports.doComment = function (req, res, result) {
-    var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
-        var name = fields.name;
-        var email = fields.email;
-        var content = fields.content;
-        db.getAllCount("article", function (count) {
-            var allCount = count.toString();
-            var date = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
-            db.insertOne("comment", {
-                "ID" : parseInt(allCount) + 1,
-                "name" : name,
-                "email" : email,
-                "content" : content,
-                "date" : date
-            },function (err, result) {
-                if(err){
-                    console.log("留言错误" + err);
-                    return;
-                }
-                res.send("1");
-            });
-        });
-    });
-};
-//取得评论
-exports.getComment = function (req, res, next) {
-    var page = req.query.page;
-    db.find("comment",{},{"pageamount":10,"page":page,"sort":{"date":-1}}, function (err, result) {
-        var obj = {"allResult" : result};
-        res.json(obj);
-    });
-};
 
-//取得评论总页数
-exports.getAllCountComment = function (req, res, next) {
-    db.getAllCount("comment", function (count) {
-        res.send(count.toString());
-    });
-};
-//Comment
 
 //blog-manage!
 exports.getManage = function (req, res, result) {
