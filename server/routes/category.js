@@ -7,8 +7,9 @@ var ObjectID = require('mongodb').ObjectID
  * 查询列表页
  */
 router.get('/list', (req, res, next) => {
-  var page = req.query.page;
-  db.find('categorys', {}, {'pageamount': 10, 'page':page, 'sort': {'date': -1}}, function (err, result) {
+  var page = req.query.page
+  var size = req.query.size
+  db.find('categorys', {}, {size: size, page: page, 'sort': {'date': -1}}, function (err, result) {
     db.success(res, result, err)
   })
 })

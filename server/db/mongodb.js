@@ -38,7 +38,7 @@ exports.insertOne = function (collectionName, json, callback) {
   })
 };
 
-//查找数据，找到所有数据。args是个对象{"pageamount":10,"page":10}
+//查找数据，找到所有数据。args是个对象{"size":10,"page":1}
 exports.find = function (collectionName, json, C, D) {
   var result = [];    //结果数组
   if (arguments.length == 3) {
@@ -51,9 +51,9 @@ exports.find = function (collectionName, json, C, D) {
       var callback = D;
       var args = C;
       //应该省略的条数
-      var skipnumber = args.pageamount * args.page || 0;
+      var skipnumber = args.size * (args.page - 1) || 0;
       //数目限制
-      var limit = args.pageamount || 0;
+      var limit = parseInt(args.size) || 10;
       //排序方式
       var sort = args.sort || {};
   } else {
@@ -68,7 +68,7 @@ exports.find = function (collectionName, json, C, D) {
     cursor.each(function (err, doc) {
       if (err) {
         callback(err, null);
-        db.close(); //关闭数据库
+        //db.close(); //关闭数据库
         return;
       }
       if (doc != null) {
@@ -117,6 +117,13 @@ exports.getAllCount = function (collectionName,callback) {
       });
   })
 };
+
+
+function getCount(name)  {
+  db.getAllCount(name, function (count) {
+    return count.toString()
+  })
+}
 
 
 exports.list =  (res, ret, count, err) => {

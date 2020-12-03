@@ -10,7 +10,6 @@ function getCount(name)  {
   })
 }
 
-
 /**
  * 查询列表页
  */
@@ -25,9 +24,14 @@ function getCount(name)  {
  */
 router.get('/list', (req, res, next) => {
   var page = req.query.page
-  let count = getCount('users')
-  db.find('users', {}, {'pageamount': 10, 'page': page, 'sort': {'date': -1}}, function (err, result) {
-    db.success(res, result, err)
+  var size = req.query.size
+  let total = getCount('users')
+  console.log(total)
+  db.find('users', {}, {size: size, page: page, 'sort': {'date': -1}}, function (err, result) {
+    db.list(res, result, {
+      total: total,
+      pages: total % size == 0 ? total / size : Math.ceil(total / size)
+    }, err)
   })
 })
 

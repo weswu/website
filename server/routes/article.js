@@ -7,7 +7,8 @@ var ObjectID = require('mongodb').ObjectID
  * 查询列表页
  */
 router.get('/movies', (req, res) => {
-  var page = req.query.page;
+  var page = req.query.page
+  var size = req.query.size
   var params = {}
   // 多条件查询
   if(req.query.type === 'javascript'){
@@ -19,7 +20,7 @@ router.get('/movies', (req, res) => {
   if(req.query.type === 'environment'){
     params = {"classify":"Environment"}
   }
-  db.find('articles', params, {'pageamount': 10, 'page':page, 'sort': {'date': -1}}, function (err, result) {
+  db.find('articles', params, {size: size, page: page, 'sort': {'date': -1}}, function (err, result) {
     db.success(res, result, err)
   })
 })
