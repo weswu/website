@@ -54,6 +54,12 @@ cnpm install
 npm start
 ```
 
+```
+mongo "mongodb+srv://wes.z45uy.mongodb.net/<dbname>" --username root
+```
+
+
+
 ### MLab
 0.5G free mongoDB
 

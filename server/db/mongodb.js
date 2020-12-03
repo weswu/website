@@ -11,7 +11,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 
 // 链接数据库
-const url = "mongodb+srv://root:20201113@wes.z45uy.mongodb.net/sample_mflix?retryWrites=true&w=majority";
+const url = "mongodb+srv://root:20201113@wes.z45uy.mongodb.net/website?retryWrites=true&w=majority";
 
 //不管数据库什么操作，都是先连接数据库，所以我们可以把连接数据库
 //封装成为内部函数
@@ -23,7 +23,7 @@ function _connectDB(callback) {
       return;
     }
     console.log('数据库已连接')
-    var dbase = db.db("sample_mflix")
+    var dbase = db.db("website")
     callback(err, dbase);
   });
 }
