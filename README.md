@@ -26,9 +26,6 @@ https://stylus.bootcss.com/
 #### 图表
 http://drug.ysmove.com/qdh/dist/#/store/monitor2
 
-#### 看板娘
-[live2d][2]
-
 
 #### 代码区高亮显示
 
@@ -85,7 +82,6 @@ mongo "mongodb+srv://wes.z45uy.mongodb.net/<dbname>" --username root
 
 [0]: https://vuetifyjs.com/zh-Hans/components/alerts/
 [1]: http://www.weizai.party
-[2]: https://github.com/galnetwen/Live2D
 
 [5]: https://github.com/kzj0916/KzjMusicxindong
 [6]: https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=neteasecloudmusicapi
