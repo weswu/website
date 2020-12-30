@@ -4,6 +4,7 @@
 ### 框架
 [vuetifyjs][0]
 [Demo][1]
+[案例][7]
 
 ```javascript;
 yarn install
@@ -85,3 +86,4 @@ mongo "mongodb+srv://wes.z45uy.mongodb.net/<dbname>" --username root
 
 [5]: https://github.com/kzj0916/KzjMusicxindong
 [6]: https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=neteasecloudmusicapi
+[7]: https://github.com/scottjeremy/EJblog

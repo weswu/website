@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser')
 var logger = require('morgan');
 var session = require('express-session');
-
+// 引入异常捕获处理  mongoose
+//require('express-async-errors');
 var app = express();
 
 // view engine setup 静态jade模板
@@ -19,8 +20,12 @@ app.use(session({
     saveUninitialized : true
 }));
 
+// log中间件
 app.use(logger('dev'));
+// 注册body-parser中间件
+// parse application/json
 app.use(bodyParser.json())
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
