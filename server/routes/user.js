@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var db = require('../db/mongodb')
+var db = require('../db/db')
 var ObjectID = require('mongodb').ObjectID
 
 

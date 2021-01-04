@@ -4,7 +4,6 @@
 ### 框架
 [vuetifyjs][0]
 [Demo][1]
-[案例][7]
 
 ```javascript;
 yarn install
@@ -28,38 +27,6 @@ https://stylus.bootcss.com/
 http://drug.ysmove.com/qdh/dist/#/store/monitor2
 
 
-#### 代码区高亮显示
-
-node --inspect cc.js
-chrome://inspect/#devices
-
-devtools://devtools/bundled/inspector.html?experiments=true&v8only=true&ws://127.0.0.1:9229/0483a97a-7edc-48f2-bcc3-056924dd07b0
-
-
-socket.io
-user.broadcast
-
-
-
-## 数据库
-```
-yarn server
-or
-npm install express-generator -g
-express server
-cd server
-cnpm install
-npm start
-```
-
-```
-mongo "mongodb+srv://wes.z45uy.mongodb.net/<dbname>" --username root
-```
-
-
-
-### MLab
-0.5G free mongoDB
 
 #### 用户管理
 >登录、注册
@@ -86,4 +53,3 @@ mongo "mongodb+srv://wes.z45uy.mongodb.net/<dbname>" --username root
 
 [5]: https://github.com/kzj0916/KzjMusicxindong
 [6]: https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=neteasecloudmusicapi
-[7]: https://github.com/scottjeremy/EJblog

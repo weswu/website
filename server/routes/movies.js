@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var db = require("../db/mongodb.js")
+var db = require('../db/db')
 //与数据库默认的_id进行匹配
 var ObjectID = require('mongodb').ObjectID
 

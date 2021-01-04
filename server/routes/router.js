@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var db = require("../db/mongodb.js")
+var db = require('../db/db')
 var md5 = require("../db/md5.js")
 
 //首页
