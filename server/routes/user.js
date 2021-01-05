@@ -3,6 +3,8 @@ var router = express.Router()
 var db = require('../db/db')
 var ObjectID = require('mongodb').ObjectID
 
+var {mongoose, User} = require('../db/mongoose')
+
 
 function getCount(name)  {
   db.getAllCount(name, function (count) {
@@ -36,17 +38,34 @@ router.get('/list', (req, res, next) => {
 })
 
 /**
- * 查询
-*/
-router.get('/:id', (req, res) => {
-  var id = req.params.id
-  db.find('users', {'_id': ObjectID(id)},function (err,result) {
+ * 添加
+ */
+router.post('/add', (req, res) => {
+  let params = req.body
+  let newUser = new User(params)
+  newUser.save((err, result)=> {
+    if (err) return console.error(err)
     res.json({
       code: 0,
-      data: result[0],
+      data: result,
       msg: null
     })
   })
+  //写入数据库
+  // let data = {
+  //   title: params.title,
+  //   content: params.content,
+  //   classify: params.classify,
+  //   upvote: params.upvote, //点赞数
+  //   comments: params.comments, //回复数
+  // }
+  // db.insertOne('articles', data, (err, result) => {
+  //   res.json({
+  //     code: 0,
+  //     data: true,
+  //     msg: null
+  //   })
+  // })
 })
 
 /**
@@ -64,5 +83,18 @@ router.delete('/:id', (req, res) => {
   })
 })
 
+/**
+ * 查询
+*/
+router.get('/:id', (req, res) => {
+  var id = req.params.id
+  db.find('users', {'_id': ObjectID(id)},function (err,result) {
+    res.json({
+      code: 0,
+      data: result[0],
+      msg: null
+    })
+  })
+})
 
 module.exports = router

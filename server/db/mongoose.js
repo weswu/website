@@ -1,7 +1,6 @@
 /*
   链接数据库
   node mongoose.js
-  https://segmentfault.com/a/1190000015866331?utm_source=tag-newest
 */
 
 let mongoose = require('mongoose')
@@ -20,13 +19,13 @@ db.once('open', ()=> {
 let Schema = mongoose.Schema
 
 let userSchema = Schema({
-  name: String,
+  name: { type: String, required: true, unique: true },
   email: String,
-  password: String
+  password: { type: String, required: true }
 })
 let User = mongoose.model('User', userSchema)
 
-let newUser = new User({
-  name: 'wes'
-})
-newUser.save()
+module.exports = {
+  mongoose,
+  User
+}
