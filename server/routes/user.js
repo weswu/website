@@ -1,9 +1,8 @@
-var express = require('express')
-var router = express.Router()
+let router = require('express').Router()
 var db = require('../db/db')
 var ObjectID = require('mongodb').ObjectID
 
-var {mongoose, User} = require('../db/mongoose')
+var service = require('../service/user')
 
 
 function getCount(name)  {
@@ -24,7 +23,7 @@ function getCount(name)  {
 /**
  * 查询列表页
  */
-router.get('/list', (req, res, next) => {
+router.get('/list', (req, res) => {
   var page = req.query.page
   var size = req.query.size
   let total = getCount('users')
@@ -35,6 +34,10 @@ router.get('/list', (req, res, next) => {
       pages: total % size == 0 ? total / size : Math.ceil(total / size)
     }, err)
   })
+})
+router.get('/list2', async (req, res) => {
+  let data = await service.getList()
+  res.success(data)
 })
 
 /**
@@ -75,11 +78,7 @@ router.delete('/:id', (req, res) => {
   var id = req.params.id
   db.deleteMany('users', {'_id': ObjectID(id)}, (err, results) => {
     if(err) return console.log("删除访问用户数据错误:"+err)
-    res.json({
-      code: 0,
-      data: true,
-      msg: null
-    })
+    res.success()
   })
 })
 

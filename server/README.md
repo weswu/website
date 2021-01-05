@@ -4,6 +4,7 @@
 socket.io
 user.broadcast
 [案例][0]
+[电商后台小项目][1]
 
 
 ### 准备
@@ -73,3 +74,4 @@ touch mongose.js
 db.collection.getIndexs()
 
 [0]: https://github.com/scottjeremy/EJblog
+[1]: https://blog.csdn.net/www294993741/article/details/84585550

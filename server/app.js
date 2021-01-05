@@ -1,13 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser')
-var logger = require('morgan');
-var session = require('express-session');
-// 引入异常捕获处理  mongoose
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser')
+let logger = require('morgan');
+let session = require('express-session');
+// 路由404异常
+let createError = require('http-errors');
+// await异常捕获处理
 //require('express-async-errors');
-var app = express();
+let app = express();
 
 // view engine setup 静态jade模板
 app.set('views', path.join(__dirname, 'views'));
@@ -35,25 +36,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 //公用
 app.use('/api', require('./routes/router'))
 //文章
-app.use('/api/article', require('./routes/article'))
+//app.use('/api/article', require('./routes/article'))
 //视频
-app.use('/api/movies', require('./routes/movies'))
+//app.use('/api/movies', require('./routes/movies'))
 //用户
 app.use('/api/user', require('./routes/user'))
 //分类
-app.use('/api/category', require('./routes/category'))
+//app.use('/api/category', require('./routes/category'))
 //评论
-app.use('/api/comment', require('./routes/comment'))
+//app.use('/api/comment', require('./routes/comment'))
 
 
-//catch 404 and forward to error handler
-app.use(function(req, res, next) {
+// 注册异常处理中间件
+// 1. catch 404 and forward to error handler
+app.use((req, res, next) => {
   next(createError(404));
-  console.log('404')
 });
 
-// error handler
-app.use(function(err, req, res, next) {
+// 2. error handler
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -61,6 +62,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+  // res.fail(err.toString())
 });
 
 module.exports = app;
