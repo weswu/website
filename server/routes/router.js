@@ -13,13 +13,19 @@ router.get('/', (req, res, next) => {
 // }
 
 /*****************************   注册    ************************/
-//提交登陆
+
+/**
+  * 登录的方法
+  * @param user
+  * @returns token
+*/
 router.post('/login', (req, res) => {
   let params = req.body
+  debugger
   var username = params.username;
   var password = params.password;
   password = md5(md5(password).substr(4,7) + md5(password));
-
+  var ipAddress = getClientIp(req);
   //检索数据库，按登录名检索数据库，查看密码是否匹配
   db.find("user",{"username":username},function(err,result){
       if(err){
@@ -66,51 +72,18 @@ router.post('/register', (req, res, next) => {
 
 
 
-//获取用户地理位置
-router.get('/address', (req, res) => {
-  let params = req.body
-  var cxipAddress = params.cxipAddress;
-  var cxIsp = params.cxIsp;
-  var cxBrowser = params.cxBrowser;
-  var cxOS = params.cxOS;
-  var gdIsp = params.gdIsp;
-  var ipAddress = getClientIp(req);
-
-  db.getAllCount("Visitor", function (count) {
-      var allCount = count.toString();
-      //写入数据库
-      db.insertOne("Visitor", {
-          "ID" : parseInt(allCount) + 1,
-          "ipAddress" : ipAddress,
-          "cxipAddress" : cxipAddress ? cxipAddress : "查询网无法查询",
-          "cxIsp" : cxIsp ? cxIsp : "查询网无法定位",
-          "cxBrowser" : cxBrowser ? cxBrowser :"查询网无法识别游览器",
-          "cxOS" : cxOS ? cxOS :"查询网无法识别系统",
-          "gdIsp" : gdIsp ? gdIsp : "高德无法定位",
-      },function (err, result) {
-          if(err){
-              console.log("服务器错误" + err);//服务器错误
-              return;
-          }
-          console.log("有人访问Scott主页啦！");
-          res.send("1");
-      });
-  });
-})
-
-
 //获取客户端真实ip;
 function getClientIp(req) {
-    var ipAddress;
-    var forwardedIpsStr = req.headers['X-Forwarded-For'];//判断是否有反向代理头信息
-    if (forwardedIpsStr) {//如果有，则将头信息中第一个地址拿出，该地址就是真实的客户端IP；
-        var forwardedIps = forwardedIpsStr.split(',');
-        ipAddress = forwardedIps[0];
-    }
-    if (!ipAddress) {//如果没有直接获取IP；
-        ipAddress = req.connection.remoteAddress;
-    }
-    return ipAddress;
+  var ipAddress;
+  var forwardedIpsStr = req.headers['X-Forwarded-For'];//判断是否有反向代理头信息
+  if (forwardedIpsStr) {//如果有，则将头信息中第一个地址拿出，该地址就是真实的客户端IP；
+    var forwardedIps = forwardedIpsStr.split(',');
+    ipAddress = forwardedIps[0];
+  }
+  if (!ipAddress) {//如果没有直接获取IP；
+    ipAddress = req.connection.remoteAddress;
+  }
+  return ipAddress;
 }
 
 module.exports = router

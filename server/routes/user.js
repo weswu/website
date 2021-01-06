@@ -1,98 +1,78 @@
 let router = require('express').Router()
-var db = require('../db/db')
-var ObjectID = require('mongodb').ObjectID
-
-var service = require('../service/user')
-
-
-function getCount(name)  {
-  db.getAllCount(name, function (count) {
-    return count.toString()
-  })
-}
+const User = require('../model/user')
+//const crypto = require('lxj-crypto')
 
 /**
  * 查询列表页
  */
- router.get('/detail', (req, res, next) => {
-   if(req.session.login !== '1'){
-     res.send("请登陆！")
-   }
- })
-
-/**
- * 查询列表页
- */
-router.get('/list', (req, res) => {
-  var page = req.query.page
-  var size = req.query.size
-  let total = getCount('users')
-  console.log(total)
-  db.find('users', {}, {size: size, page: page, 'sort': {'date': -1}}, function (err, result) {
-    db.list(res, result, {
+router.get('/list', async (req, res) => {
+  let page = req.query.page || 1
+  let size = parseInt(req.query.size) || 10
+  let skipnumber = size * (page - 1) || 0
+  let data = await User.find().skip(skipnumber).limit(size).sort({name: -1})
+  let total = await User.count()
+  res.json({
+    code: 0,
+    data: {
+      list: data,
       total: total,
       pages: total % size == 0 ? total / size : Math.ceil(total / size)
-    }, err)
+    },
+    msg: null
   })
-})
-router.get('/list2', async (req, res) => {
-  let data = await service.getList()
-  res.success(data)
 })
 
 /**
  * 添加
  */
-router.post('/add', (req, res) => {
-  let params = req.body
-  let newUser = new User(params)
-  newUser.save((err, result)=> {
-    if (err) return console.error(err)
-    res.json({
-      code: 0,
-      data: result,
-      msg: null
-    })
+router.post('/add', async (req, res) => {
+  let user = req.body
+
+  //检查密码是否为空
+  if(!user.password || user.password.length === 0) {
+    throw Error('密码不能为空')
+  }
+  //检查用户是否已经存在
+  let result = await User.findOne({email: user.email}).select('-__v')
+  if(result) {
+    throw Error('用户名已经存在')
+  }
+  //对密码进行加密,加密的方式：使用username作为随机数对password进行哈希
+  //user.password = crypto.md5Hmac(user.password, user.name)
+  await User.create(user)
+  res.json({
+    code: 0,
+    data: true,
+    msg: null
   })
-  //写入数据库
-  // let data = {
-  //   title: params.title,
-  //   content: params.content,
-  //   classify: params.classify,
-  //   upvote: params.upvote, //点赞数
-  //   comments: params.comments, //回复数
-  // }
-  // db.insertOne('articles', data, (err, result) => {
-  //   res.json({
-  //     code: 0,
-  //     data: true,
-  //     msg: null
-  //   })
-  // })
 })
 
 /**
  * 删除
 */
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   var id = req.params.id
-  db.deleteMany('users', {'_id': ObjectID(id)}, (err, results) => {
-    if(err) return console.log("删除访问用户数据错误:"+err)
-    res.success()
+	let data = await User.deleteOne({_id: id})
+  if(!data || data.n === 0){
+    throw Error('删除用户失败')
+  }
+  res.json({
+    code: 0,
+    data: data,
+    msg: null
   })
 })
 
 /**
  * 查询
 */
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   var id = req.params.id
-  db.find('users', {'_id': ObjectID(id)},function (err,result) {
-    res.json({
-      code: 0,
-      data: result[0],
-      msg: null
-    })
+  let data = await User.findOne({_id: id})
+  res.json({
+    code: 0,
+    data: data,
+    msg: null
   })
 })
 
