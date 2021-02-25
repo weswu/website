@@ -5,6 +5,7 @@ socket.io
 user.broadcast
 [案例][0]
 [电商后台小项目][1]
+[博客网站][2]
 
 
 ### 准备
@@ -13,6 +14,7 @@ cnpm install express-generator -g
 express server
 cd server
 cnpm install
+cnpm start
 ```
 
 ### 调试
@@ -54,6 +56,22 @@ module.exports = conn
 mongo "mongodb+srv://wes.z45uy.mongodb.net/<dbname>" --username root
 ```
 
+#### 添加admin
+db.createUser(
+  {
+    user: "admin",
+    pwd: "admin",
+    roles: [
+      {role: "readWrite", db: "admin"},
+      {
+        role: "userAdminAnyDatabase",
+        db: "admin"
+      }
+    ]
+  }
+)
+
+
 
 ### 知识点
 
@@ -75,3 +93,4 @@ db.collection.getIndexs()
 
 [0]: https://github.com/scottjeremy/EJblog
 [1]: https://blog.csdn.net/www294993741/article/details/84585550
+[2]: https://github.com/Nealyang/React-Express-Blog-Demo
