@@ -6,7 +6,7 @@ user.broadcast
 [案例][0]
 [电商后台小项目][1]
 [博客网站][2]
-
+http://localhost:3306/api/user/list
 
 ### 准备
 ```
@@ -32,29 +32,15 @@ yarn server
 ```
 
 
-### mysql(未使用)
-public/mysql
-```
-var mysql = require('mysql')
-
-// 链接数据库
-var conn = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '123456',
-  port: '3306',
-  database: 'website',
-  dateStrings : true //解决时间格式
-})
-conn.connect()
-
-module.exports = conn
-```
-
 ### mongodb
 ```
 mongo "mongodb+srv://wes.z45uy.mongodb.net/<dbname>" --username root
 ```
+
+
+### 接口
+- http://localhost:3000/api/user/list
+
 
 #### 添加admin
 db.createUser(
