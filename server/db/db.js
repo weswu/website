@@ -7,9 +7,9 @@
 var MongoClient = require('mongodb').MongoClient;
 
 // 数据库地址
-const url = "mongodb+srv://root:20201113@wes.z45uy.mongodb.net/website?retryWrites=true&w=majority";
+const url = "mongodb+srv://root:20201113@wes.z45uy.mongodb.net/website";
 
-//不管数据库什么操作，都是先连接数据库，所以我们可以把连接数据库
+//不管数据库什么操作，都是先连接数据库，所以我们可以把连接数据库 ?retryWrites=true&w=majority
 //封装成为内部函数
 function _connectDB(callback) {
   //连接数据库

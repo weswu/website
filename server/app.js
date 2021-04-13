@@ -36,9 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 注册api路由
 //公用
-app.use('/api', require('./routes/router'))
+app.use('/', require('./routes/router'))
 //文章
-//app.use('/api/article', require('./routes/article'))
+app.use('/api/news', require('./routes/news'))
 //视频
 //app.use('/api/movies', require('./routes/movies'))
 //用户

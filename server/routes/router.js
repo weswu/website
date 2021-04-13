@@ -8,6 +8,7 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' })
 })
 
+
 // if(req.session.login !== '1'){
 //   res.send("请登陆！")
 // }
