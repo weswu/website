@@ -63,6 +63,27 @@ db.createUser(
 
 #### 中间件
 
+##### express-session
+- 工作流
+web访问 --> server(保存用户信息 生成session对象[key,value]) --> 返回key --> web保存cookie(key)
+web访问(key) --> server查找对应session(value) --> 判断是否登录
+- 使用
+设置值
+req.session.login = "1"
+获取值
+req.session.login
+- 常用方法
+```
+   req.session.destroy(function(err){}) /*销毁 session*/
+
+   req.session.username='张三'; //设置 session
+
+   req.session.username //获取 session
+
+   req.session.cookie.maxAge=0; //重新设置 cookie 的过期时间
+```
+
+
 #### 数据模型
 ```
 cnpm install mongoose --save-dev
