@@ -24,7 +24,7 @@ router.get('/list', async (req, res) => {
  * 添加
  */
 router.post('/add', async (req, res) => {
-  if(req.session.login !== '1'){
+  if(req.session.code){
     throw Error('未登录 news add')
   }
   await Model.create(req.body)
@@ -39,7 +39,7 @@ router.post('/add', async (req, res) => {
  * 删除
 */
 router.delete('/:id', async (req, res) => {
-  if(req.session.login !== '1'){
+  if(req.session.code){
     throw Error('未登录 news delete')
   }
   var id = req.params.id
@@ -57,7 +57,7 @@ router.delete('/:id', async (req, res) => {
  * 修改
 */
 router.put('/:id', async (req, res) => {
-  if(req.session.login !== '1'){
+  if(req.session.code){
     throw Error('未登录 news edit')
   }
   var id = req.params.id

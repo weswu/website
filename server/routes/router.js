@@ -6,7 +6,7 @@ let Model = require('../model/user')
 // 首页
 router.get('/', (req, res, next) => {
   let info = '未登录！'
-  if(req.session.login === '1'){
+  if(req.session.code){
     info = '已登录！'
   }
   res.render('index', { title: 'Express', userInfo: info })
@@ -28,7 +28,6 @@ router.post('/api/login', async (req, res) => {
     if(err) throw Error('服务器错误')
   })
   console.log(data)
-  let msg
   if(!data){
     throw Error('没有这个人')
   }
@@ -36,16 +35,29 @@ router.post('/api/login', async (req, res) => {
   var dbpassword = md5.decrypt(data.password)
   //要对用户这次输入的密码，进行相同的加密操作。然后与
   //数据库中的密码进行比对
+  let msg
   if (password === dbpassword) {
     msg = '登陆成功'
-    req.session.login = '1' // 设置session
+    req.session.code = data._id // 设置session  key=value
   } else {
+    req.session.code = undefined
     msg = '密码不匹配'
   }
   res.json({
     code: 0,
-    data: true,
+    data: {
+      access_token: req.session.code
+    },
     msg: msg
+  })
+})
+
+router.post('/api/loginout', async (req, res) => {
+  delete req.session.code
+  res.json({
+    code: 0,
+    data: true,
+    msg: '退出登录成功'
   })
 })
 

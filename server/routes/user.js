@@ -80,8 +80,27 @@ router.put('/:id', async (req, res) => {
 /**
  * 查询
 */
+router.get('/detail', async (req, res) => {
+  let key = req.session.code
+  let token = req.query.token
+  if (key === token) {
+    let data = await Model.findOne({_id: token})
+    res.json({
+      code: 0,
+      data: data,
+      msg: null
+    })
+  } else {
+    res.json({
+      code: -1,
+      data: false,
+      msg: '用户未登录或登录过期了'
+    })
+  }
+})
+
 router.get('/:id', async (req, res) => {
-  var id = req.params.id
+  let id = req.params.id
   let data = await Model.findOne({_id: id})
   res.json({
     code: 0,

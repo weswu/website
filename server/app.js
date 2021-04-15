@@ -21,7 +21,7 @@ app.use(require('cookie-parser')(config.session_secret)); // 开启cookie
 app.use(session({
     secret : config.session_secret,
     cookie: {
-      maxAge: 1000*30*60   // 过期时间
+      maxAge: 1000*30*60   //cookie的失效时间  毫秒为单位  30分后失效
     },
     resave : false,
     saveUninitialized : true
